@@ -6,7 +6,7 @@
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 01:08:41 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/01/31 07:30:31 by smoraes-         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:16:43 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #define	YMAX 1080
 #define XMAX 1920
 
+/* struture:
+ * User defined data type that can be used to group elements of different type
+ * into a single type
+ */
 
 struct point
 {
@@ -57,10 +61,11 @@ int main(void)
 	screen.pt1 = makepoint(0,0);
 	screen.pt2 = makepoint(XMAX, YMAX);
 
+	// Passing Structure Members
 	middle = makepoint((screen.pt1.x + screen.pt2.x) / 2,
 			(screen.pt1.y + screen.pt2.y)/2);
 
-	addpo = addpoint(,middle);
+	addpo = addpoint(middle,middle);
 
 	printf("pt1 -> %d, %d\n", screen.pt1.x, screen.pt1.y);
 	printf("pt2 -> %d, %d\n", screen.pt2.x, screen.pt2.y);
