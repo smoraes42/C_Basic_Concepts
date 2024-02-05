@@ -5,40 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 02:16:24 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/02/05 02:18:44 by smoraes-         ###   ########.fr       */
+/*   Created: 2024/02/05 02:32:35 by smoraes-          #+#    #+#             */
+/*   Updated: 2024/02/05 04:23:44 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* Traversing a Linked List */
 
-typedef struct s_list
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	int data;
+	struct node *link;
+} node;
 
-//ft_lstnew
-// 
-t_list *ft_lstnew(void *content);
-
-//ft_lstadd_front
-void ft_lstadd_front(t_list **lst, t_list *new);
-
-//ft_lstsize
-int ft_lstsize(t_list *lst);
-
-//ft_lstlast
-t_list *ft_lstlast(t_list *lst);
-
-//ft_lstadd_back
-void ft_lstadd_back(t_list **lst, t_list *new);
-
-//ft_lstdelone
-void ft_lstdelone(t_list *lst, void(*del)(void *));
-
-//ft_lstclear
-void ft_lstclear(t_list **lst, void(*del) (void*));
+void count_of_nodes(struct node *head);
+void print_data(struct node *head);
 
 int main()
 {
+	node *head, *current;
+
+	head = (node *) malloc(sizeof(node));
+	head->data = 23;
+	head->link = NULL;
+
+	current = (node *) malloc(sizeof(node));
+	current->data = 98;
+	current->link = NULL;
+	head->link = current;
+
+	current = malloc(sizeof(struct node));
+	current -> data = 3;
+	current -> link = NULL;
+	head->link->link = current;
+
+
+	count_of_nodes(head);
+	printf_data(head);
+	return(0);
+}
+
+void count_of_nodes(struct node *head)
+{
+	int count;
+	node *ptr;
+	ptr = NULL;
+	if (head == NULL)
+		printf("Linked list is empty");
+	ptr = head;
+	count = 0;
+	while(ptr != NULL)
+	{
+		count++;
+		ptr = ptr->link;
+	}
+	printf("%d", count);
+}
+
+void print_data(struct node *head)
+{
+	if (head == NULL)
+		printf("Linked List is empty");
+	struct node *ptr = NULL;
+	ptr = head;
+	while(ptr != NULL)
+	{
+		printf("%d", ptr->data);
+		ptr = ptr->link;
+	}
 }
