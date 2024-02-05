@@ -6,7 +6,7 @@
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 02:32:35 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/02/05 05:16:58 by smoraes-         ###   ########.fr       */
+/*   Updated: 2024/02/05 07:26:45 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void print_data(struct node *head);
 int main()
 {
 	node *head, *current;
+	int data11= 11;
+	int data111 = 111;
 
 	head = (node *) malloc(sizeof(node));
 	head->data = 23;
@@ -42,9 +44,10 @@ int main()
 	current -> link = NULL;
 	head->link->link = current;
 
-
 	count_of_nodes(head);
 	printf_data(head);
+	add_at_end(head, data11);
+	head = add_at_bgn(head, data111);
 	return(0);
 }
 
@@ -84,11 +87,24 @@ void add_at_end(struct node *head, int data)
 	ptr = head;
 	temp = (struct node *)malloc(sizeof(struct node));
 
-	temp -> data = data;
-	temp -> link = NULL;
+	temp->data = data;
+	temp->link = NULL;
 
 	while(ptr->link != NULL)
 		ptr = ptr->link;
 	ptr->link = temp;
 	
+}
+
+struct node* add_at_bgn(struct node *head, int data)
+{
+	struct node *ptr;
+	ptr = (struct node *)malloc(sizeof(struct node));
+
+	ptr->data = data;
+	ptr->link = NULL;
+
+	ptr->link = head;
+	head = ptr;
+	return head;
 }
