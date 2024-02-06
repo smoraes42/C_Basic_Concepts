@@ -6,7 +6,7 @@
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:16:26 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/02/06 01:49:04 by smoraes-         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:53:18 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,14 @@ You have to implement the following conversions:
 • %X Prints a number in hexadecimal (base 16) uppercase format.
 • %% Prints a percent sign.
 */
-
+//void	ft_put_ulong_fd(unsigned long n, int fd)
+//{
+//	if (n > 9)
+//	{
+//		ft_put_ulong_fd((n / 10),fd);
+//	}
+//	ft_putchar_fd(((n % 10) + '0'), fd);
+//}
 // With Indexes
 int ft_printf(const char *strng, ...)
 {
@@ -72,13 +79,22 @@ int ft_printf(const char *strng, ...)
 				fstr = va_arg(params, char *);
 				ft_putstr_fd(fstr, 1);
 				count += ft_strlen(fstr);
+				i++;
 			}
 			else if (strng[i] == 'p')
 			{
+				// fix return counter
+				int lgtaddr = 0;
 				long faddr;
 				faddr = va_arg(params, long);
-				ft_putnbr
-
+				ft_puthex_fd(faddr, 1);
+				while (faddr > 0)
+				{
+					lgtaddr++;
+					faddr /= 16;
+				}
+				count += (lgtaddr + 3);
+				i++;
 			}
 
 

@@ -6,17 +6,22 @@
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:25:51 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/02/06 01:49:04 by smoraes-         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:23:31 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../../Libft/Project/libft.h"
+#include <limits.h>
 
 int ft_printf(const char *strng, ...);
 
 int main(void)
 {
+	int test = (INT_MAX);
+	//unsigned long test = (INT_MAX);
+	//unsigned long *test1= &test;
+	//unsigned long t = 140732766361216;
 	//ft_printf("test1%c\n", 'c');
 	//ft_printf("test1%%%%%\n", 'c');
 
@@ -26,6 +31,15 @@ int main(void)
 	//ft_printf("test%%%%%%%"); // -> No Good 7
 	//printf("return value %d\n", ft_printf("test%%%%%%%s","_notstr")); // -> No Good 7
 	//printf("return value %d\n", printf("test%%%%%%%s","_notrstr")); // -> No Good 7
-	printf (
+	//int x = 5;
+	//printf("%p\n", test1);
+	//ft_printf("%p\n", test1);
+	//ft_put_ulong_fd(test, 1);
+	//printf ("%p", &x);
+	int p = printf ("%x\n", test);
+	ft_puthex_mayus_fd(
+	//int ft = ft_printf ("%p", &test1);
+	//ft_puthex_fd(t, 1);
+	//printf("\nreturn printf: %d\nreturn ft_print: %d", p, ft);
 	return (0);
 }
