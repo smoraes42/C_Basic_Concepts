@@ -6,7 +6,7 @@
 /*   By: smoraes- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 23:16:26 by smoraes-          #+#    #+#             */
-/*   Updated: 2024/02/06 19:53:18 by smoraes-         ###   ########.fr       */
+/*   Updated: 2024/02/07 06:09:05 by smoraes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,7 @@ int ft_printf(const char *strng, ...)
 		if (strng[i] == '%')
  		{
 			i++;
-			if (strng[i] == '%')
-			{
-				write(1, &strng[i++], 1);
-				count++;
-			}
-			else if (strng[i] == 'c')
+			if (strng[i] == 'c')
 			{
 				char fc;
 				fc = va_arg(params, int);
@@ -93,14 +88,43 @@ int ft_printf(const char *strng, ...)
 					lgtaddr++;
 					faddr /= 16;
 				}
-				count += (lgtaddr + 3);
+				//count += (lgtaddr + 3);
 				i++;
 			}
-
-
-			
+			else if (strng[i] == 'd' || strng[i] == 'i')
+			{
+				int fint;
+				fint = va_arg(params, int);
+				ft_putnbr_fd(fint, 1);
+				i++;
+			}
+			else if (strng[i] == 'u')
+			{
+				int fint;
+				fint = va_arg(params, int);
+				ft_put_uint_fd(fint, 1);
+				i++;
+			}
+			else if (strng[i] == 'x')
+			{
+				int fhex;
+				fhex = va_arg(params, int);
+				ft_puthex_fd(fhex, 1);
+				i++;
+			}
+			else if (strng[i] == 'X')
+			{
+				int fhex_mayus;
+				fhex_mayus = va_arg(params, int);
+				ft_puthex_mayus_fd(fhex_mayus, 1);
+				i++;
+			}
+			else if (strng[i] == '%')
+			{
+				write(1, &strng[i++], 1);
+				count++;
+			}
 		}
-						
 	}
 	return (count);
 }
